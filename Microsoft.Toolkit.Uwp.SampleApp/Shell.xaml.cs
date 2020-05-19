@@ -8,6 +8,7 @@ using Microsoft.Toolkit.Uwp.SampleApp.Pages;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -119,18 +120,6 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         {
             HideSamplePicker();
             NavigateToSample(e.ClickedItem as Sample);
-        }
-
-        private void SamplePickerGridView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            SamplePickerGrid.RegisterPropertyChangedCallback(UIElement.VisibilityProperty, (s, args) =>
-            {
-                if (s is UIElement samplePicker && samplePicker.Visibility == Visibility.Visible)
-                {
-                    // TODO: This is stealing focus from the search box!
-                    DispatcherHelper.ExecuteOnUIThreadAsync(() => SamplePickerGridView.Focus(FocusState.Keyboard));
-                }
-            });
         }
     }
 }
